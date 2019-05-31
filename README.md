@@ -9,6 +9,7 @@ Visualize graphs using python!
 ![Graph 5](./images/5.png)
 ![Graph 6](./images/6.png)
 ![Graph 7](./images/7.png)
+![Graph 8](./images/8.png)
 
 Dependencies:
 * graphics.py
