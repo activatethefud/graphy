@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Use this script to generate graph randomly
+# Pipe the output to index.txt or use it in a perpetual loop
+# for entertainment purposes
+
 for iterator in $(seq 1 $1); do
 	echo -e "$iterator\c"
 
