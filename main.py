@@ -6,9 +6,9 @@ import sys
 
 node_count=0
 
-def generate_circle_coord(center,radius):
-	# Generate node coordinates to be in a circle (TODO Increase space between nodes)
-	t=randint(0,node_count**5)
+def generate_circle_coord(center,radius,node_count,node_number):
+	# Generate node coordinates to fit on the same circle
+	t=(2*math.pi/node_count)*float(node_number)
 	if randint(0,1) is True:
 		t+=0.25
 	x=center+radius*math.sin(t)
@@ -44,7 +44,7 @@ def main():
 	for vertex in graph.keys():
 
 		if vertex not in node_points.keys():
-			coords=generate_circle_coord(width/2,circle_radius)
+			coords=generate_circle_coord(width/2,circle_radius,node_count,vertex)
 			pt=Point(coords[0],coords[1])
 
 			if coords[0] < width/2:
@@ -59,7 +59,7 @@ def main():
 		
 		for neighbour in graph[vertex]:
 			if neighbour not in node_points.keys():
-				coords=generate_circle_coord(width/2,circle_radius)
+				coords=generate_circle_coord(width/2,circle_radius,node_count,neighbour)
 				pt=Point(coords[0],coords[1])
 
 				if coords[0] < width/2:
@@ -87,8 +87,8 @@ def main():
 				edge.draw(graph_win)
 	
 	# Pause the graphical window, awaiting mouse input
-	graph_win.getMouse()
 
+	graph_win.getMouse()
 	input_file.close()
 
 main()
