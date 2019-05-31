@@ -11,11 +11,10 @@ Visualize graphs using python!
 ![Graph 7](./images/7.png)
 ![Graph 8](./images/8.png)
 
-Dependencies:
-* graphics.py
-* Tkinter
+### Dependencies:
+* [graphics.py](https://pypi.org/project/graphics.py/)
+* [Tkinter](https://wiki.python.org/moin/TkInter)
 
 ### Usage
 
-Input an adjacency list into input.txt and run main.py
-
+Input an adjacency list into input.txt and run main.py. The nodes will always belong to a circle, but are isomorphic to the one you copied the nodes and edges from.
