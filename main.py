@@ -7,19 +7,21 @@ import sys
 node_count=0
 
 def generate_circle_coord(center,radius,node_count,node_number):
-	# Generate node coordinates to fit on the same circle
+	''' Generate node coordinates to fit on the same circle
+	adding equal fractions from 0 '''
 	t=(2*math.pi/node_count)*float(node_number)
-	if randint(0,1) is True:
-		t+=0.25
+	''' Parameter circle equation ''' 
 	x=center+radius*math.sin(t)
 	y=center+radius*math.cos(t)
 	return (x,y)
 
 def main():
 
-	# Initiliaze the graph and graphical window
+	''' Define the graphical window height and weight.
+	All other parameters are relative to these. '''
 	width=400
 	height=400
+	# Initiliaze the graph and graphical window
 	graph={}
 	graph_win=GraphWin("Graph",width,height)
 	graph_win.setBackground("white")
@@ -42,11 +44,13 @@ def main():
 	# Draw all nodes inputted
 	node_points={}
 	for vertex in graph.keys():
-
+		# Skip vertices already drawn
 		if vertex not in node_points.keys():
 			coords=generate_circle_coord(width/2,circle_radius,node_count,vertex)
 			pt=Point(coords[0],coords[1])
 
+			''' Shift the node labels 1,2,3...n to the side for 
+			aesthetics, depending on the halve it's on'''
 			if coords[0] < width/2:
 				lpt=Point(coords[0]-label_shift,coords[1])
 			else:
@@ -56,8 +60,11 @@ def main():
 			label.draw(graph_win)
 
 			node_points[vertex]=pt
+		else:
+			continue
 		
 		for neighbour in graph[vertex]:
+			# Skip neighbouring vertices already drawn
 			if neighbour not in node_points.keys():
 				coords=generate_circle_coord(width/2,circle_radius,node_count,neighbour)
 				pt=Point(coords[0],coords[1])
@@ -81,8 +88,10 @@ def main():
 			visited.append(vertex)
 		
 		for neighbour in graph[vertex]:
-			if vertex not in visited or neighbour not in visited:
+			if neighbour not in visited:
 				edge=Line(node_points[vertex],node_points[neighbour])
+				''' This is an optional argument, to draw edges in real time
+				one by one, use only for entertainment ;D '''
 				len(sys.argv) != 1 and sleep(int(sys.argv[1]))
 				edge.draw(graph_win)
 	
